@@ -1,5 +1,5 @@
 
-import "./BoshSahifa.css";
+import "./boshSahifa.css";
 
 function BoshSahifa() {
   const features = [

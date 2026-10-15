@@ -1,505 +1,680 @@
+
 .aboutPage {
-  width: 1100px;
-  max-width: 94%;
-  margin: 80px auto;
+  --aboutRed: #ff321b;
   position: relative;
-  animation: pageEnter 0.9s ease both;
-}
-
-.aboutBox {
-  display: flex;
-  align-items: center;
-  gap: 45px;
-  padding: 50px;
-  position: relative;
-  overflow: hidden;
   isolation: isolate;
-  background: linear-gradient(135deg, #202020, #111111 65%, #241309);
-  border: 1px solid #ffffff12;
-  border-radius: 30px;
-  box-shadow:
-    0 25px 70px #0008,
-    inset 0 1px 0 #ffffff12;
-  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  min-height: 100vh;
+  padding: 125px 5% 40px;
+  overflow: hidden;
+  background: #0a0a0a;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.aboutBox::before {
-  content: "";
+.aboutGrid {
   position: absolute;
+  inset: 0;
+  z-index: -3;
+  pointer-events: none;
+  background-image:
+    linear-gradient(#ffffff08 1px, transparent 1px),
+    linear-gradient(90deg, #ffffff08 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: aboutGridMove 20s linear infinite;
+  mask-image: linear-gradient(to bottom, black, transparent 90%);
+}
+
+.aboutGlow {
+  position: absolute;
+  z-index: -2;
   width: 350px;
   height: 350px;
-  top: -180px;
-  right: -100px;
-  background: #ff3b0025;
-  filter: blur(80px);
   border-radius: 50%;
-  z-index: -1;
-  animation: orangeGlow 6s ease-in-out infinite alternate;
-}
-
-.aboutBox::after {
-  content: "";
-  position: absolute;
-  width: 180%;
-  height: 100%;
-  top: 0;
-  left: -190%;
-  background: linear-gradient(
-    110deg,
-    transparent 35%,
-    #ffffff08 48%,
-    #ffffff15 50%,
-    transparent 65%
-  );
-  transform: skewX(-15deg);
+  filter: blur(110px);
+  opacity: .17;
   pointer-events: none;
-  animation: lightSweep 8s ease-in-out infinite;
-  z-index: -1;
+  animation: aboutGlowMove 8s ease-in-out infinite alternate;
 }
 
-.aboutText {
-  flex: 1;
-  min-width: 0;
-  animation: textEnter 0.9s 0.15s ease both;
+.aboutGlowOne {
+  top: 5%;
+  right: -100px;
+  background: #ff321b;
 }
 
-.aboutText h1 {
-  color: #fff;
-  font-size: clamp(32px, 4vw, 48px);
-  font-weight: 800;
-  letter-spacing: -1.5px;
-  line-height: 1.2;
-  margin: 0 0 20px;
-  transition: letter-spacing 0.4s ease;
+.aboutGlowTwo {
+  left: -180px;
+  top: 48%;
+  background: #ff5b20;
+  animation-delay: -4s;
 }
 
-.aboutText h1:hover {
-  letter-spacing: -0.5px;
+.aboutContainer {
+  width: 1250px;
+  max-width: 100%;
+  margin: 0 auto;
 }
 
-.aboutText h1 span {
-  display: inline-block;
-  color: #ff4b12;
-  background: linear-gradient(90deg, #ff3b00, #ff8a48, #ff3b00);
-  background-size: 200% auto;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: textShine 4s linear infinite;
+.aboutTop {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 30px;
+  min-height: 440px;
 }
 
-.aboutText h2 {
-  color: #fff;
-  font-size: 23px;
-  font-weight: 700;
-  margin: 18px 0;
-  transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.aboutText h2:hover {
-  color: #ff6030;
-  transform: translateX(5px);
-}
-
-.aboutText > p {
-  color: #bdbdbd;
-  font-size: 15px;
-  line-height: 1.9;
-  margin-bottom: 14px;
-  transition: color 0.35s ease;
-}
-
-.aboutText > p:hover {
-  color: #fff;
-}
-
-.aboutInfo {
-  display: flex;
-  gap: 14px;
-  margin: 28px 0;
-}
-
-.aboutInfo div {
-  flex: 1;
-  min-width: 0;
-  padding: 20px 15px;
-  background: linear-gradient(145deg, #303030, #202020);
-  border: 1px solid #ffffff0d;
-  border-radius: 17px;
+.aboutHeading {
   position: relative;
-  overflow: hidden;
-  transition:
-    transform 0.4s ease,
-    border-color 0.4s ease,
-    box-shadow 0.4s ease,
-    background 0.4s ease;
-  animation: cardEnter 0.7s ease both;
+  z-index: 2;
+  animation: aboutEnterLeft .8s ease both;
 }
 
-.aboutInfo div:nth-child(2) {
-  animation-delay: 0.15s;
-}
-
-.aboutInfo div:nth-child(3) {
-  animation-delay: 0.3s;
-}
-
-.aboutInfo div::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #ff3b00, #ff9b59);
-  transition: width 0.4s ease;
-}
-
-.aboutInfo div:hover {
-  transform: translateY(-9px) scale(1.025);
-  border-color: #ff4b0055;
-  background: linear-gradient(145deg, #38271f, #242424);
-  box-shadow: 0 15px 30px #0005, 0 0 18px #ff3b0010;
-}
-
-.aboutInfo div:hover::before {
-  width: 100%;
-}
-
-.aboutInfo h3 {
-  color: #fff;
-  font-size: 16px;
-  font-weight: 700;
-  margin-bottom: 9px;
-  transition: color 0.3s ease;
-}
-
-.aboutInfo div:hover h3 {
-  color: #ff6030;
-}
-
-.aboutInfo p {
-  color: #aaa;
-  font-size: 13px;
-  line-height: 1.6;
-  margin: 0;
-}
-
-.aboutTime {
+.aboutEyebrow {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  color: #fff;
+  color: #b5b5b5;
+  font-size: 11px;
+  letter-spacing: 3px;
+  font-weight: 700;
+}
+
+.aboutEyebrow i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--aboutRed);
+  box-shadow: 0 0 14px var(--aboutRed);
+  animation: aboutPulse 1.5s infinite;
+}
+
+.aboutHeading h1 {
+  margin: 27px 0 20px;
+  font-size: clamp(58px, 7vw, 94px);
+  font-weight: 1000;
+  line-height: .92;
+  letter-spacing: -5px;
+}
+
+.aboutHeading h1 span {
+  color: var(--aboutRed);
+  text-shadow: 0 0 35px #ff321b35;
+  animation: aboutTextGlow 3s ease-in-out infinite alternate;
+}
+
+.aboutIntro {
+  max-width: 440px;
+  color: #a5a5aa;
   font-size: 14px;
-  padding: 12px 18px;
-  background: #ffffff08;
-  border: 1px solid #ffffff12;
-  border-radius: 12px;
-  transition: all 0.35s ease;
+  line-height: 1.9;
+  margin-bottom: 25px;
 }
 
-.aboutTime:hover {
-  color: #ff7045;
-  border-color: #ff4b0055;
-  background: #ff3b0010;
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px #ff3b0012;
+.aboutButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 25px;
+  padding: 16px 20px;
+  border-radius: 7px;
+  background: var(--aboutRed);
+  color: white;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  box-shadow: 0 8px 30px #ff321b25;
+  transition: .3s ease;
 }
 
-.aboutImage {
-  flex: 1;
-  min-width: 0;
+.aboutButton span {
+  font-size: 19px;
+  transition: transform .3s ease;
+}
+
+.aboutButton:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 35px #ff321b55;
+  background: #ff503b;
+}
+
+.aboutButton:hover span {
+  transform: translate(4px, -4px);
+}
+
+.aboutVisual {
   position: relative;
+  min-height: 420px;
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: imageEnter 1s 0.2s ease both;
+  overflow: hidden;
+  animation: aboutEnterRight .9s ease both;
 }
 
-.aboutImage::before {
-  content: "";
+.aboutBigNumber {
   position: absolute;
-  width: 75%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: #ff4b001b;
-  filter: blur(55px);
-  animation: imageGlow 4s ease-in-out infinite alternate;
+  font-size: clamp(150px, 24vw, 310px);
+  font-weight: 1000;
+  letter-spacing: -15px;
+  color: #ffffff05;
+  user-select: none;
+  animation: aboutNumberFloat 5s ease-in-out infinite;
 }
 
-.aboutImage::after {
-  content: "";
+.aboutOrbit {
   position: absolute;
-  width: 78%;
   aspect-ratio: 1;
-  border: 1px solid #ff673025;
+  border: 1px solid #ff321b38;
   border-radius: 50%;
-  animation: circleRotate 18s linear infinite;
+  pointer-events: none;
 }
 
-.aboutImage img {
+.aboutOrbitOne {
+  width: 330px;
+  animation: aboutRotate 22s linear infinite;
+}
+
+.aboutOrbitTwo {
+  width: 260px;
+  border-style: dashed;
+  animation: aboutRotate 30s linear infinite reverse;
+}
+
+.aboutImageFrame {
+  width: min(88%, 390px);
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
-  z-index: 1;
-  display: block;
+  z-index: 2;
+  animation: aboutBurgerFloat 4s ease-in-out infinite;
+}
+
+.aboutImageFrame::before {
+  content: "";
+  position: absolute;
+  inset: 15%;
+  border-radius: 50%;
+  background: #ff321b32;
+  filter: blur(50px);
+  animation: aboutImageGlow 3s ease-in-out infinite alternate;
+}
+
+.aboutImageFrame img {
+  position: relative;
   width: 100%;
-  max-width: 430px;
-  max-height: 480px;
+  height: 100%;
   object-fit: contain;
-  filter: drop-shadow(0 20px 35px #0008);
-  animation: imageFloat 4s ease-in-out infinite;
-  transition:
-    transform 0.6s cubic-bezier(.2, .8, .2, 1),
-    filter 0.5s ease;
+  filter: drop-shadow(0 25px 25px #000c);
+  transition: transform .5s, filter .5s;
 }
 
-.aboutImage img:hover {
-  transform: scale(1.07) translateY(-8px) rotate(1deg);
-  filter:
-    drop-shadow(0 25px 35px #0009)
-    drop-shadow(0 0 15px #ff4b0030);
+.aboutImageFrame:hover img {
+  transform: scale(1.09) rotate(-5deg);
+  filter: drop-shadow(0 25px 30px #ff321b50);
 }
 
-/* Animatsiyalar */
-
-@keyframes pageEnter {
-  from {
-    opacity: 0;
-    transform: translateY(35px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.aboutBadge {
+  position: absolute;
+  right: 0;
+  bottom: 12%;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 18px;
+  background: #191919;
+  border: 1px solid #ffffff20;
+  border-radius: 10px;
+  box-shadow: 0 15px 35px #0008;
+  animation: aboutBadgeFloat 3s ease-in-out infinite;
 }
 
-@keyframes textEnter {
-  from {
-    opacity: 0;
-    transform: translateX(-35px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+.aboutBadge > span {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 9px;
+  background: #ff321b20;
+  color: var(--aboutRed);
+  font-size: 22px;
 }
 
-@keyframes imageEnter {
-  from {
-    opacity: 0;
-    transform: translateX(35px) scale(0.94);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0) scale(1);
-  }
+.aboutBadge strong,
+.aboutBadge small {
+  display: block;
 }
 
-@keyframes cardEnter {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.aboutBadge strong {
+  font-size: 11px;
+  letter-spacing: 1px;
 }
 
-@keyframes imageFloat {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-12px);
-  }
+.aboutBadge small {
+  margin-top: 5px;
+  color: #999;
+  font-size: 10px;
 }
 
-@keyframes imageGlow {
-  from {
-    opacity: 0.5;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1.12);
-  }
+.aboutDecor {
+  position: absolute;
+  z-index: 3;
+  color: var(--aboutRed);
+  animation: aboutSparkle 2s ease-in-out infinite;
 }
 
-@keyframes orangeGlow {
-  from {
-    opacity: 0.5;
-    transform: translate(0, 0);
-  }
-  to {
-    opacity: 1;
-    transform: translate(-35px, 35px);
-  }
+.aboutDecorOne {
+  top: 15%;
+  right: 20%;
+  font-size: 32px;
 }
 
-@keyframes textShine {
-  to {
-    background-position: 200% center;
-  }
+.aboutDecorTwo {
+  left: 8%;
+  bottom: 25%;
+  font-size: 27px;
+  animation-delay: -1s;
 }
 
-@keyframes lightSweep {
-  0%, 70% {
-    left: -190%;
-  }
-  100% {
-    left: 150%;
-  }
+.aboutStats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 20px;
+  border-top: 1px solid #ffffff19;
+  border-bottom: 1px solid #ffffff19;
 }
 
-@keyframes circleRotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.aboutStats > div {
+  padding: 25px 20px;
+  border-right: 1px solid #ffffff19;
+  transition: background .3s;
 }
 
-/* Planshet */
+.aboutStats > div:last-child {
+  border-right: 0;
+}
 
-@media (max-width: 950px) {
+.aboutStats > div:hover {
+  background: #ff321b0b;
+}
+
+.aboutStats strong {
+  display: block;
+  color: #fff;
+  font-size: 34px;
+  font-weight: 900;
+}
+
+.aboutStats strong span {
+  color: var(--aboutRed);
+}
+
+.aboutStats p {
+  margin-top: 8px;
+  color: #888;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+}
+
+.aboutValuesHeading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 20px;
+  margin: 65px 0 25px;
+}
+
+.aboutValuesHeading > div > span {
+  color: var(--aboutRed);
+  font-size: 10px;
+  letter-spacing: 2px;
+  font-weight: 800;
+}
+
+.aboutValuesHeading h2 {
+  margin-top: 12px;
+  font-size: clamp(24px, 3vw, 36px);
+  letter-spacing: -1px;
+}
+
+.aboutValuesHeading h2 b {
+  color: var(--aboutRed);
+}
+
+.aboutValuesHeading > p {
+  color: #888;
+  font-size: 12px;
+  padding-bottom: 4px;
+}
+
+.aboutCards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 17px;
+}
+
+.aboutCard {
+  min-height: 220px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #ffffff15;
+  border-radius: 13px;
+  background: linear-gradient(145deg, #171717, #101010);
+  transition: transform .35s ease, border-color .35s ease, background .35s ease;
+  animation: aboutCardEnter .7s ease both;
+}
+
+.aboutCard:nth-child(2) {
+  animation-delay: .15s;
+}
+
+.aboutCard:nth-child(3) {
+  animation-delay: .3s;
+}
+
+.aboutCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 80%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, #ff321b10, transparent);
+  transition: left .7s ease;
+}
+
+.aboutCard:hover::before {
+  left: 140%;
+}
+
+.aboutCard:hover {
+  transform: translateY(-8px);
+  border-color: #ff321b70;
+  background: #191311;
+}
+
+.aboutCardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.aboutCardTop > span:first-child {
+  color: #737373;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.aboutCardIcon {
+  width: 43px;
+  height: 43px;
+  display: grid;
+  place-items: center;
+  background: #ff321b17;
+  border-radius: 10px;
+  color: var(--aboutRed);
+  font-size: 23px;
+  transition: transform .4s;
+}
+
+.aboutCard:hover .aboutCardIcon {
+  transform: rotate(-12deg) scale(1.12);
+}
+
+.aboutCard h3 {
+  margin-top: 25px;
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+
+.aboutCard p {
+  max-width: 290px;
+  margin-top: 10px;
+  color: #929292;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.aboutCardLine {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 0;
+  height: 2px;
+  background: var(--aboutRed);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .4s;
+}
+
+.aboutCard:hover .aboutCardLine {
+  transform: scaleX(1);
+}
+
+.aboutCardArrow {
+  position: absolute;
+  right: 24px;
+  bottom: 20px;
+  color: var(--aboutRed);
+  opacity: 0;
+  transform: translate(-5px, 5px);
+  transition: .3s;
+}
+
+.aboutCard:hover .aboutCardArrow {
+  opacity: 1;
+  transform: translate(0);
+}
+
+.aboutFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #ffffff15;
+  color: #737373;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+}
+
+.aboutFooter > span:first-child {
+  color: var(--aboutRed);
+  font-size: 13px;
+  font-weight: 900;
+}
+
+@keyframes aboutEnterLeft {
+  from { opacity: 0; transform: translateX(-35px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes aboutEnterRight {
+  from { opacity: 0; transform: translateX(35px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes aboutGridMove {
+  to { background-position: 60px 60px; }
+}
+
+@keyframes aboutGlowMove {
+  from { transform: translate(0, 0) scale(.9); }
+  to { transform: translate(-40px, 35px) scale(1.15); }
+}
+
+@keyframes aboutPulse {
+  50% { box-shadow: 0 0 18px var(--aboutRed); opacity: .6; }
+}
+
+@keyframes aboutTextGlow {
+  from { text-shadow: 0 0 8px #ff321b20; }
+  to { text-shadow: 0 0 30px #ff321b75; }
+}
+
+@keyframes aboutBurgerFloat {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-12px) rotate(2deg); }
+}
+
+@keyframes aboutRotate {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes aboutBadgeFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes aboutNumberFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes aboutImageGlow {
+  from { opacity: .55; transform: scale(.9); }
+  to { opacity: 1; transform: scale(1.15); }
+}
+
+@keyframes aboutSparkle {
+  0%, 100% { opacity: .35; transform: scale(.7) rotate(0); }
+  50% { opacity: 1; transform: scale(1.2) rotate(35deg); }
+}
+
+@keyframes aboutCardEnter {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 850px) {
   .aboutPage {
-    margin: 55px auto;
+    padding: 110px 4% 30px;
   }
 
-  .aboutBox {
-    gap: 25px;
-    padding: 35px;
+  .aboutTop {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
   }
 
-  .aboutText h1 {
-    font-size: 35px;
+  .aboutHeading h1 {
+    font-size: clamp(48px, 7vw, 68px);
+    letter-spacing: -3px;
   }
 
-  .aboutText h2 {
-    font-size: 20px;
+  .aboutVisual {
+    min-height: 340px;
   }
 
-  .aboutInfo {
-    gap: 9px;
+  .aboutOrbitOne {
+    width: 270px;
   }
 
-  .aboutInfo div {
-    padding: 15px 10px;
+  .aboutOrbitTwo {
+    width: 210px;
   }
 
-  .aboutImage img {
-    max-width: 350px;
-  }
-}
-
-/* Telefon */
-
-@media (max-width: 750px) {
-  .aboutPage {
-    width: 100%;
-    max-width: 92%;
-    margin: 35px auto;
+  .aboutBadge {
+    right: 0;
+    padding: 10px;
   }
 
-  .aboutBox {
-    flex-direction: column-reverse;
-    gap: 25px;
-    padding: 25px 20px;
-    border-radius: 23px;
+  .aboutCards {
+    gap: 10px;
   }
 
-  .aboutText {
-    width: 100%;
-    text-align: center;
-  }
-
-  .aboutText h1 {
-    font-size: clamp(29px, 7vw, 38px);
-    letter-spacing: -0.8px;
-  }
-
-  .aboutText h2 {
-    font-size: 20px;
-  }
-
-  .aboutText > p {
-    font-size: 14px;
-    line-height: 1.8;
-  }
-
-  .aboutInfo {
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .aboutInfo div {
+  .aboutCard {
     padding: 18px;
   }
+}
 
-  .aboutInfo h3 {
-    font-size: 16px;
+@media (max-width: 600px) {
+  .aboutPage {
+    padding: 105px 16px 25px;
   }
 
-  .aboutInfo p {
-    font-size: 14px;
+  .aboutTop {
+    grid-template-columns: 1fr;
+    gap: 0;
   }
 
-  .aboutImage {
-    width: 100%;
-    max-width: 350px;
+  .aboutHeading h1 {
+    font-size: clamp(62px, 15vw, 82px);
+    margin-top: 24px;
   }
 
-  .aboutImage img {
-    max-width: 280px;
-    max-height: 330px;
+  .aboutIntro {
+    font-size: 13px;
   }
 
-  .aboutTime {
-    justify-content: center;
+  .aboutVisual {
+    min-height: 330px;
+  }
+
+  .aboutImageFrame {
+    width: min(82%, 310px);
+  }
+
+  .aboutOrbitOne {
+    width: 270px;
+  }
+
+  .aboutOrbitTwo {
+    width: 215px;
+  }
+
+  .aboutStats > div {
+    padding: 19px 9px;
+  }
+
+  .aboutStats strong {
+    font-size: 26px;
+  }
+
+  .aboutStats p {
+    font-size: 8px;
+    letter-spacing: .5px;
+    line-height: 1.5;
+  }
+
+  .aboutValuesHeading {
+    align-items: flex-start;
+    flex-direction: column;
+    margin-top: 45px;
+  }
+
+  .aboutValuesHeading h2 {
+    font-size: 26px;
+  }
+
+  .aboutCards {
+    grid-template-columns: 1fr;
+  }
+
+  .aboutCard {
+    min-height: 190px;
+  }
+
+  .aboutFooter {
     flex-wrap: wrap;
+    line-height: 1.7;
+  }
+
+  .aboutFooter > span:nth-child(2) {
+    order: 3;
+    width: 100%;
   }
 }
-
-/* Kichik telefonlar */
-
-@media (max-width: 380px) {
-  .aboutBox {
-    padding: 20px 15px;
-  }
-
-  .aboutText h1 {
-    font-size: 28px;
-  }
-
-  .aboutImage img {
-    max-width: 230px;
-  }
-}
-
-/* Animatsiyani kamaytirish sozlamasi yoqilgan bo'lsa */
 
 @media (prefers-reduced-motion: reduce) {
-  .aboutPage,
-  .aboutText,
-  .aboutImage,
-  .aboutInfo div,
-  .aboutImage img,
-  .aboutImage::before,
-  .aboutImage::after,
-  .aboutBox::before,
-  .aboutBox::after,
-  .aboutText h1 span {
-    animation: none !important;
-  }
-
-  .aboutBox,
-  .aboutInfo div,
-  .aboutImage img,
-  .aboutText h1,
-  .aboutText h2,
-  .aboutText > p,
-  .aboutTime {
-    transition: none !important;
+  .aboutPage *,
+  .aboutPage *::before,
+  .aboutPage *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
   }
 }

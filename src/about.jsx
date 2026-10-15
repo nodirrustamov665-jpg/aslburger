@@ -1,55 +1,127 @@
-import "./about.css";
+
+import "./About.css";
 
 function About() {
+  const values = [
+    {
+      number: "01",
+      title: "SIFAT",
+      text: "Har bir buyurtmada sifat va yangi masalliqlarga e'tibor beramiz.",
+      icon: "✳"
+    },
+    {
+      number: "02",
+      title: "MAZА",
+      text: "O'ziga xos retseptlarimiz bilan har bir luqmani zavqqa aylantiramiz.",
+      icon: "↗"
+    },
+    {
+      number: "03",
+      title: "XIZMAT",
+      text: "Sizning vaqtingizni qadrlaymiz va buyurtmalarni tez tayyorlaymiz.",
+      icon: "⚡"
+    }
+  ];
+
   return (
-    <div className="aboutPage">
-      <div className="aboutBox">
+    <section className="aboutPage" id="about">
+      <div className="aboutGrid"></div>
+      <div className="aboutGlow aboutGlowOne"></div>
+      <div className="aboutGlow aboutGlowTwo"></div>
 
-        <div className="aboutText">
-          <h1>
-            ASL <span>BURGER</span>
-          </h1>
+      <div className="aboutContainer">
+        <div className="aboutTop">
+          <div className="aboutHeading">
+            <span className="aboutEyebrow">
+              <i></i> BIZ HAQIMIZDA
+            </span>
 
-          <h2>Biz haqimizda 🍔</h2>
+            <h1>
+              BIZNING
+              <br />
+              <span>HIKOYA.</span>
+            </h1>
 
-          <p>
-            ASL BURGER — mazali va sifatli fast food
-            taomlarini sevuvchilar uchun yaratilgan.
-          </p>
+            <p className="aboutIntro">
+              Biz oddiy fast food emas, o'zgacha ta'm va
+              unutilmas taassurot yaratishga intilamiz.
+              ASL BURGER — mazali lahzalar boshlanadigan joy.
+            </p>
 
-          <p>
-            Biz burger, lavash, hot dog, donar va turli
-            xil ichimliklarni yangi mahsulotlardan tayyorlaymiz.
-          </p>
-
-          <div className="aboutInfo">
-            <div>
-              <h3>🍔 Sifat</h3>
-              <p>Yangi va sifatli mahsulotlar.</p>
-            </div>
-
-            <div>
-              <h3>⚡ Tezlik</h3>
-              <p>Tez va qulay xizmat.</p>
-            </div>
-
-            <div>
-              <h3>❤️ Mijoz</h3>
-              <p>Sizning mamnunligingiz muhim.</p>
-            </div>
+            <a href="/taomlar" className="aboutButton">
+              BIZNING MENYU <span>↗</span>
+            </a>
           </div>
 
-          <h3 className="aboutTime">
-            🕘 Ish vaqti: 09:00 — 23:00
-          </h3>
+          <div className="aboutVisual">
+            <div className="aboutBigNumber">ASL</div>
+            <div className="aboutOrbit aboutOrbitOne"></div>
+            <div className="aboutOrbit aboutOrbitTwo"></div>
+
+            <div className="aboutImageFrame">
+              <img src="/bigburger1.png" alt="ASL BURGER taomi" />
+            </div>
+
+            <div className="aboutBadge">
+              <span>★</span>
+              <div>
+                <strong>REAL TASTE</strong>
+                <small>Haqiqiy ta'm</small>
+              </div>
+            </div>
+
+            <span className="aboutDecor aboutDecorOne">✳</span>
+            <span className="aboutDecor aboutDecorTwo">✦</span>
+          </div>
         </div>
 
-        <div className="aboutImage">
-          <img src="/aboutburger.png" alt="ASL Burger" />
+        <div className="aboutStats">
+          <div>
+            <strong>100<span>%</span></strong>
+            <p>SIFATGA E'TIBOR</p>
+          </div>
+          <div>
+            <strong>01</strong>
+            <p>BIZNING MAQSAD</p>
+          </div>
+          <div>
+            <strong>∞</strong>
+            <p>MAZALI LAHZALAR</p>
+          </div>
         </div>
 
+        <div className="aboutValuesHeading">
+          <div>
+            <span>01 — BIZNING QADRIYATLAR</span>
+            <h2>NIMA UCHUN <b>ASL BURGER?</b></h2>
+          </div>
+          <p>Har bir detalda bizning yondashuvimiz bor.</p>
+        </div>
+
+        <div className="aboutCards">
+          {values.map((item) => (
+            <article className="aboutCard" key={item.number}>
+              <div className="aboutCardTop">
+                <span>{item.number}</span>
+                <span className="aboutCardIcon">{item.icon}</span>
+              </div>
+
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+
+              <div className="aboutCardLine"></div>
+              <span className="aboutCardArrow">↗</span>
+            </article>
+          ))}
+        </div>
+
+        <div className="aboutFooter">
+          <span>ASL BURGER</span>
+          <span>TA'MI BOSHQA. YONDASHUV BOSHQA.</span>
+          <span>EST. WITH TASTE ✳</span>
+        </div>
       </div>
-    </div>
+    </section>
   );
 }
 
